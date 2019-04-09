@@ -1,0 +1,60 @@
+<html>
+<head>
+	<style>
+	*{padding: 0; margin:0;}
+	canvas{ background: #eee; display: block; margin: 0 auto;}
+	</style>
+</head>
+
+<body>
+<canvas id= "myCanvas" width="800" height="600"></canvas>
+<script type="text/javascript">
+var canvas = document.getElementById("myCanvas");
+var ctx = canvas.getContext("2d");
+
+var blocks = new Image();
+blocks.src = "texture/block1.png";
+var obstacles = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0,
+                 0,0,0,1,1,1,1,1,1,1,1,1,0,0,0, 0,0,0,0,0,
+				 0,0,0,1,0,0,0,0,0,0,0,1,0,0,0, 0,0,0,0,0,
+				 0,0,0,1,0,0,0,0,0,0,0,1,0,0,0, 0,0,0,0,0,
+				 0,0,0,1,0,0,1,1,1,0,0,1,0,0,0, 0,0,0,0,0,
+				 0,1,0,0,0,0,0,0,0,0,0,0,0,1,0, 0,0,0,0,0,
+				 0,1,0,0,0,1,0,1,0,1,0,0,0,1,0, 0,0,0,0,0,
+				 0,1,0,0,0,1,0,1,0,1,0,0,0,1,0, 0,0,0,0,0,
+				 0,1,0,0,0,1,0,1,0,1,0,0,0,1,0, 0,0,0,0,0,
+				 0,1,0,0,0,0,0,0,0,0,0,0,0,1,0, 0,0,0,0,0,
+				 0,0,0,1,0,0,1,1,1,0,0,1,0,0,0, 0,0,0,0,0,
+				 0,0,0,1,0,0,0,0,0,0,0,1,0,0,0, 0,0,0,0,0,
+				 0,0,0,1,0,0,0,0,0,0,0,1,0,0,0, 0,0,0,0,0,
+				 0,0,0,1,1,1,1,1,1,1,1,1,0,0,0, 0,0,0,0,0,
+				 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0];
+function drawObstacles()
+{
+var line = 0;
+  for(var a = 0; a<obstacles.length; a++)
+  {
+     if(a%20 == 0 && a!= 0)
+	 {
+	     line++;
+	 }
+	 if(obstacles[a] == 1)
+	 {
+	     ctx.drawImage(blocks, (a%20)*40, line*40);
+	     
+	 }
+  }
+  }
+  function draw()
+{
+ctx.fillStyle ="black";
+ctx.fillRect(0,0,800,600);
+drawObstacles();
+}
+
+setInterval(draw, 2);
+
+
+</script>
+</body>
+</html>
